@@ -28,7 +28,7 @@ export default function Login() {
               height={217}
             />
           </div>
-          <div className={styles.login}>
+            <form className={styles.login} action="/login" method="post">
             <label>E-mail</label>
             <input
               type="email"
@@ -42,7 +42,7 @@ export default function Login() {
               required
             ></input>
             <button type="submit">Entrar</button>
-          </div>
+            </form>
         </main>
       </div>
       <footer className={styles.footer}>
