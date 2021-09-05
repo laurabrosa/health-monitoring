@@ -1,0 +1,100 @@
+.container {
+  min-height: 87vh;
+}
+
+.background {
+  background: #f1f5fd;
+  height: 87vh;
+  display: flex;
+  min-height: 87vh;
+  padding: 0 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  label {
+    margin-bottom: 5px;
+    color: #54515a;
+    font-size: 14px;
+  }
+
+  input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    height: 30px;
+    width: 280px;
+    border: none;
+    background: #FFFFFF;
+  }
+
+  button {
+    margin-top: 20px;
+    border-radius: 10px;
+    align-self: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    height: 40px;
+    color: #FFFFFF;
+    width: 180px;
+    border: none;
+    background: #3C64B1;
+
+    &:hover {
+      background: #3a6dcc;
+    }
+
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 90px;
+  border-top: 1px solid #f0eded;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    color:#3C64B1;
+    font-size: 12px;
+
+    &:hover {
+      color:#aac2f0;
+    }
+  }
+}
+
+.github {
+  margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
