@@ -1,0 +1,132 @@
+@import "./_colors.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    flex-direction: row;
+    background-size: cover;
+    background: #fbfdff;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px solid black;
+    box-shadow: 0px 2px 2px #00000030;
+    width: 100%;
+    justify-content: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    width: 240px;
+    justify-content: space-between;
+    margin: 30px;
+
+    :hover {
+        color: $dark-blue;
+    }
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.link {
+    margin-left: 10px;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+}
+.main {
+    display: flex;
+    padding-top: 100px;
+    flex-direction: column;
+    width: 92%;
+    margin: 0 auto;
+    max-width: 1280px;
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 26px;
+        margin-right: 2%;
+        margin-bottom: 60px;
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 75px;
+    border-top: 1px solid $gray-2;
+    display: flex;
+    box-shadow: 0px 2px 2px #00000030;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        color: $dark-blue;
+        font-size: 12px;
+
+        &:hover {
+            color: $light-blue-hover;
+        }
+    }
+}
+.image {
+    margin-right: 3px;
+}
+
+.imageOXI {
+    margin-left: 5px;
+}
+
+.infoBPM {
+    margin-right: 15px;
+}
+
+.infoOXI {
+    margin-left: 5px;
+}
+
+.githubLogo {
+    margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+    .grid {
+        width: 100%;
+        flex-direction: column;
+    }
+}
