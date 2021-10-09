@@ -70,14 +70,17 @@
 
     h2 {
         margin-top: 40px;
+        margin-left: 40px;
     }
 
     div {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        flex-wrap: wrap;
         align-items: center;
         margin-top: 26px;
         margin-right: 2%;
+        margin-left: 2%;
         margin-bottom: 60px;
     }
 }

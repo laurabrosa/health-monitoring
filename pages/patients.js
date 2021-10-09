@@ -4,8 +4,40 @@ import Link from "next/link";
 import styles from "../src/styles/Patient.module.scss";
 import Card from "../src/components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { database } from "../services/firebase";
+import { useState, useEffect } from "react";
+import { useRouter } from 'next/router';
+import { useAuth } from '../contexts/AuthUserContext';
 
 export default function Patient() {
+  const { authUser, loading, signOut } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !authUser)
+      router.push('/')
+  }, [authUser, loading, router]);
+
+  const [patients, setPatients] = useState([]);
+
+  useEffect(() => {
+    return () => {
+      const refPatients = database.ref("patients")
+      refPatients.on("value", result => {
+        const resultPatients = Object.entries(result.val()).map(([key, value]) => {
+          return {
+            "key": key,
+            "name": value.name,
+            "bpm": value.bpm.map(res => res.value),
+            "spo2": value.spo2.map(res => res.value),
+            "temperature": value.temperature.map(res => res.value),
+          }
+        })
+        setPatients(resultPatients);
+      })
+    };
+  }, [])
+
 
   return (
     <div className={styles.container}>
@@ -32,7 +64,8 @@ export default function Patient() {
                 Pacientes
               </a>
             </Link>
-            <Link className={styles.link} href="/login">
+
+            <a className={styles.link} onClick={signOut}>
               <a>
                 <FontAwesomeIcon
                   icon={["fas", "sign-out-alt"]}
@@ -40,7 +73,7 @@ export default function Patient() {
                 />
                 Sair
               </a>
-            </Link>
+            </a>
           </div>
         </div>
       </header>
@@ -48,86 +81,24 @@ export default function Patient() {
       <main className={styles.main}>
         <h2>Meus Pacientes</h2>
         <div>
-          <Card
-            cardText="Laura Rosa"
-            cardColor="#f1f5fd"
-            buttonLink="/"
-            buttonText="Mais Detalhes"
-            buttonBgColor="#3C64B1"
-            buttonFocus="#3C64B1"
-            buttonHover="#3a6dcc"
-            buttonTarget="_blank"
-            bpmInfo="96 BPM"
-            oxiInfo="99 SpO2%"
-            tempiInfo="36ºC"
-          />
-          <Card
-            cardText="Paciente 2"
-            cardColor="#f1f5fd"
-            buttonLink="/"
-            buttonText="Mais Detalhes"
-            buttonBgColor="#3C64B1"
-            buttonFocus="#3C64B1"
-            buttonHover="#3a6dcc"
-            buttonTarget="_blank"
-            bpmInfo="96 BPM"
-            oxiInfo="99 SpO2%"
-            tempiInfo="36ºC"
-          />
-          <Card
-            cardText="Paciente 3"
-            cardColor="#f1f5fd"
-            buttonLink="/"
-            buttonText="Mais Detalhes"
-            buttonBgColor="#3C64B1"
-            buttonFocus="#3C64B1"
-            buttonHover="#3a6dcc"
-            buttonTarget="_blank"
-            bpmInfo="96 BPM"
-            oxiInfo="99 SpO2%"
-            tempiInfo="36ºC"
-          />
-        </div>
-        <div>
-          <Card
-            cardText="Paciente 4"
-            cardColor="#f1f5fd"
-            buttonLink="/"
-            buttonText="Mais Detalhes"
-            buttonBgColor="#3C64B1"
-            buttonFocus="#3C64B1"
-            buttonHover="#3a6dcc"
-            buttonTarget="_blank"
-            bpmInfo="96 BPM"
-            oxiInfo="99 SpO2%"
-            tempiInfo="36ºC"
-          />
-          <Card
-            cardText="Paciente 5"
-            cardColor="#f1f5fd"
-            buttonLink="/"
-            buttonText="Mais Detalhes"
-            buttonBgColor="#3C64B1"
-            buttonFocus="#3C64B1"
-            buttonHover="#3a6dcc"
-            buttonTarget="_blank"
-            bpmInfo="96 BPM"
-            oxiInfo="99 SpO2%"
-            tempiInfo="36ºC"
-          />
-          <Card
-            cardText="Paciente 6"
-            cardColor="#f1f5fd"
-            buttonLink="/"
-            buttonText="Mais Detalhes"
-            buttonBgColor="#3C64B1"
-            buttonFocus="#3C64B1"
-            buttonHover="#3a6dcc"
-            buttonTarget="_blank"
-            bpmInfo="96 BPM"
-            oxiInfo="99 SpO2%"
-            tempiInfo="36ºC"
-          />
+          {patients?.map(patient => {
+            return (
+              <Card
+                cardText={patient.name}
+                cardColor="#f1f5fd"
+                buttonLink="/"
+                buttonText="Mais Detalhes"
+                buttonBgColor="#3C64B1"
+                buttonFocus="#3C64B1"
+                buttonHover="#3a6dcc"
+                buttonTarget="_blank"
+                key={patient.key}
+                bpmInfo={`${patient.bpm[0]} BPM`}
+                oxiInfo={`${patient.spo2[0]} SpO2%`}
+                tempInfo={`${patient.temperature[0]}ºC`}
+              />
+            )
+          })}
         </div>
       </main>
       <footer className={styles.footer}>

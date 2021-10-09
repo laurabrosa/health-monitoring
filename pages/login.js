@@ -2,8 +2,35 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../src/styles/Login.module.scss";
+import { useState } from "react";
+import { useRouter } from 'next/router';
+import { useAuth } from '../contexts/AuthUserContext';
 
-export default function Login() {
+const Login = () =>  {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+
+
+  const router = useRouter();
+
+  const { signInWithEmailAndPassword } = useAuth();
+
+  const onSubmit = event => {
+    setError(null)
+    signInWithEmailAndPassword(email, password)
+    .then(authUser => {
+      console.log("Success. The user is created in firebase", authUser.email)
+      router.push('/patients');
+    })
+    .catch(error => {
+      setError(error.message)
+    });
+    event.preventDefault();
+  };
+
+
   return (
     <div className={styles.container}>
       <div className={styles.background}>
@@ -20,17 +47,22 @@ export default function Login() {
               height={217}
             />
           </div>
-          <form className={styles.form} action="/login" method="post">
+          <form onSubmit={onSubmit} className={styles.form}>
+            {error}
             <label>E-mail</label>
             <input
               type="email"
               placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               required
             ></input>
             <label>Senha</label>
             <input
               type="password"
               placeholder="Digite sua senha"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
               required
             ></input>
             <button type="submit">Entrar</button>
@@ -57,3 +89,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;

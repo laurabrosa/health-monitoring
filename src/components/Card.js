@@ -13,7 +13,7 @@ const CardContainer = styled.section`
   flex-direction: column;
   background-color: ${(props) => props.color};
   border-radius: 10px;
-  margin-left: 20px;
+  margin: 20px;
   width: 100%;
   max-width: 350px;
   min-width: 205px;
@@ -53,26 +53,27 @@ const Card = ({
   buttonTarget,
   bpmInfo,
   oxiInfo,
-  tempiInfo,
+  tempInfo,
+  key,
 }) => {
   return (
-    <CardContainer color={cardColor}>
+    <CardContainer color={cardColor} key={key}>
       <h4>{cardText}</h4>
       <div>
         <span className={styles.image}>
           <Image src="/bpm.svg" alt="bpm icon" width={25} height={25} />{" "}
         </span>
-        <span className={styles.infoBPM}>{bpmInfo}</span>
+        <span className={styles.infoBPM} >{bpmInfo}</span>
         <span className={styles.imageOXI}>
           <Image src="/oxi.svg" alt="oximeter icon" width={20} height={20} />{" "}
         </span>
-        <span className={styles.infoOXI}>{oxiInfo}</span>
+        <span className={styles.infoOXI} >{oxiInfo}</span>
       </div>
       <div>
         <span className={styles.image}>
           <Image src="/temp.svg"  alt="temperature icon" width={25} height={25} />{" "}
         </span>
-        <span className={styles.infoTEMP}>{tempiInfo}</span>
+        <span className={styles.infoTEMP} >{tempInfo}</span>
       </div>
       <Button
         link={buttonLink}
@@ -97,7 +98,7 @@ Card.propTypes = {
   buttonTarget: PropTypes.string.isRequired,
   bpmInfo: PropTypes.string.isRequired,
   oxiInfo: PropTypes.string.isRequired,
-  tempiInfo: PropTypes.string.isRequired,
+  tempInfo: PropTypes.string.isRequired,
 };
 
 export { Card as default };
