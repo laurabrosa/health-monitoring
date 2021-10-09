@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "codoutor",
     "public": "public",
     "ignore": [
       "firebase.json",
