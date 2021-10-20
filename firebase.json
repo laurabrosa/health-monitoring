@@ -1,17 +1,20 @@
 {
   "hosting": {
     "site": "codoutor",
-    "public": "public",
+    "cleanUrls": true,
+    "public": "out",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "redirects": [ {
+      "source": "/",
+      "destination": "/login",
+      "type": 301
+    } ]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }

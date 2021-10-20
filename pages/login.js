@@ -1,72 +1,53 @@
-/* eslint-disable @next/next/no-page-custom-font */
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../src/styles/Login.module.scss";
-import { useState } from "react";
 import { useRouter } from 'next/router';
-import { useAuth } from '../contexts/AuthUserContext';
+import { useRef } from "react";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, firebase } from '../services/firebase';
+import { uiConfig } from '../services/firebaseAuthUI';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 
-const Login = () =>  {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
-
-
+const Login = () => {
+  
+  const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
+  const authConfig = uiConfig(firebase);
 
-  const { signInWithEmailAndPassword } = useAuth();
-
-  const onSubmit = event => {
-    setError(null)
-    signInWithEmailAndPassword(email, password)
-    .then(authUser => {
-      console.log("Success. The user is created in firebase", authUser.email)
-      router.push('/patients');
-    })
-    .catch(error => {
-      setError(error.message)
-    });
-    event.preventDefault();
-  };
-
-
+  if (loading) {
+    <Box sx={{ display: 'flex' }}>
+      <CircularProgress sx={{ marginTop: '120px' }} />
+    </Box>
+  }
+  else if (error) {
+    return <Alert severity="error">{error}</Alert>
+  }
+  else if (user) {
+    router.push('/patients');
+  }
+  
   return (
     <div className={styles.container}>
       <div className={styles.background}>
         <Head>
           <title>Co-Doutor - Login</title>
         </Head>
-
         <main className={styles.main}>
           <div className={styles.logo}>
-            <Image
+            <img
               src="/logo-big.svg"
               alt="Co-doutor Logo"
               width={187}
               height={217}
             />
           </div>
-          <form onSubmit={onSubmit} className={styles.form}>
-            {error}
-            <label>E-mail</label>
-            <input
-              type="email"
-              placeholder="Digite seu e-mail"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              required
-            ></input>
-            <label>Senha</label>
-            <input
-              type="password"
-              placeholder="Digite sua senha"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            ></input>
-            <button type="submit">Entrar</button>
-          </form>
+          <section
+            className={styles.form}>
+            <StyledFirebaseAuth className={styles.language} uiConfig={authConfig} firebaseAuth={auth} />
+          </section>
         </main>
       </div>
       <footer className={styles.footer}>
@@ -76,7 +57,7 @@ const Login = () =>  {
           rel="noreferrer"
         >
           <div className={styles.githubLogo}>
-            <Image
+            <img
               src="/github-img.svg"
               alt="Github Logo"
               width={18}

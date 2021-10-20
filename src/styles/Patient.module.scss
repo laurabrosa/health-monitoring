@@ -39,6 +39,7 @@
     width: 240px;
     justify-content: space-between;
     margin: 30px;
+    font-size: 15px;
 
     :hover {
         color: $dark-blue;
@@ -49,10 +50,17 @@
     width: 16px;
     height: 16px;
     margin-right: 10px;
+    vertical-align: middle;
 }
 
 .link {
     margin-left: 10px;
+    vertical-align: middle;
+    border-style: none;
+    background: #fbfdff;
+    font-family: Poppins;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .img {
@@ -127,9 +135,48 @@
     margin-right: 10px;
 }
 
+.imgLogo {
+    width: 196px;
+    height: 40px;
+}
+
 @media (max-width: 600px) {
     .grid {
         width: 100%;
         flex-direction: column;
+    }
+
+    .imgLogo {
+        width: 150px;
+        height: 40px;
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        margin: 10px;
+        font-size: 0;
+    
+        :hover {
+            color: $dark-blue;
+        }
+    }
+
+    .link {
+        margin-left: 10px;
+        vertical-align: middle;
+        border-style: none;
+        background: #fbfdff;
+        font-size: 0;
+        cursor: pointer;
+    }
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        margin: 20px;
+        vertical-align: middle;
     }
 }

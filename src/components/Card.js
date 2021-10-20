@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import PropTypes from "prop-types";
-import Image from "next/image";
 import styles from "../styles/Patient.module.scss";
 import styled from "styled-components";
 import Button from "./Button";
@@ -61,17 +61,17 @@ const Card = ({
       <h4>{cardText}</h4>
       <div>
         <span className={styles.image}>
-          <Image src="/bpm.svg" alt="bpm icon" width={25} height={25} />{" "}
+          <img src="/bpm.svg" alt="bpm icon" width={25} height={25} />{" "}
         </span>
         <span className={styles.infoBPM} >{bpmInfo}</span>
         <span className={styles.imageOXI}>
-          <Image src="/oxi.svg" alt="oximeter icon" width={20} height={20} />{" "}
+          <img src="/oxi.svg" alt="oximeter icon" width={20} height={20} />{" "}
         </span>
         <span className={styles.infoOXI} >{oxiInfo}</span>
       </div>
       <div>
         <span className={styles.image}>
-          <Image src="/temp.svg"  alt="temperature icon" width={25} height={25} />{" "}
+          <img src="/temp.svg"  alt="temperature icon" width={25} height={25} />{" "}
         </span>
         <span className={styles.infoTEMP} >{tempInfo}</span>
       </div>

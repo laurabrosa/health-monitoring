@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-firebaseui/FirebaseAuth.js b/node_modules/react-firebaseui/FirebaseAuth.js
+index e711df0..c30ef59 100644
+--- a/node_modules/react-firebaseui/FirebaseAuth.js
++++ b/node_modules/react-firebaseui/FirebaseAuth.js
+@@ -39,7 +39,7 @@ var FirebaseAuth = function (_React$Component) {
+ 
+     require('firebaseui/dist/firebaseui.css');
+ 
+-    var firebaseui = require('firebaseui');
++    var firebaseui = require('./npm__pt_br');
+ 
+     return firebaseUiDeletion.then(function () {
+       _this2.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(_this2.firebaseAuth);
+diff --git a/node_modules/react-firebaseui/index.d.ts b/node_modules/react-firebaseui/index.d.ts
+index 0fef8d5..6f57d8b 100644
+--- a/node_modules/react-firebaseui/index.d.ts
++++ b/node_modules/react-firebaseui/index.d.ts
+@@ -1,4 +1,4 @@
+-import * as firebaseui from 'firebaseui';
++import * as firebaseui from './npm__pt_br';
+ import * as React from 'react';
+ 
+ export interface Props {

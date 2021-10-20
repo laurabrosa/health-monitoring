@@ -1,19 +1,19 @@
 import "../src/styles/globals.scss";
-import { AuthUserProvider } from "../contexts/AuthUserContext";
 import { library, config } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faUserMd, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 config.autoAddCss = false;
 
 library.add(fab, faUserMd, faSignOutAlt);
 
-function MyApp({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
+
   return (
-    <AuthUserProvider>
+    <div>
       <Component {...pageProps} />
-    </AuthUserProvider>
+    </div>
   );
 }
-
-export default MyApp;
+export default App;

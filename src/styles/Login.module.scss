@@ -29,44 +29,70 @@
   margin-bottom: 40px;
 }
 
+
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 
+  div {
+    display: flex;
+    margin-top: 1%;
+    flex-direction: column;
+    align-items: center;
+    background: #f1f5fd;
+    box-shadow: none;
+    font-family: Poppins;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 600;
+
+  }
+
+  p {
+    text-align: center;
+    margin: 0;
+    font: Poppins;
+    margin-bottom: 20px;
+  }
+
   label {
-    margin-bottom: 5px;
     color: $gray-1;
+    vertical-align: center;
     font-size: 14px;
+    
   }
 
   input {
-    margin-bottom: 20px;
+    margin-top: 10px;
     padding: 10px;
-    border-radius: 3px;
-    height: 30px;
+    height: 40px;
     width: 280px;
-    border: none;
-    background: $white;
+    font-size: 16px;
   }
 
   button {
     margin-top: 20px;
     border-radius: 10px;
-    align-self: center;
     font-weight: 600;
-    letter-spacing: 1px;
-    height: 40px;
+    letter-spacing: 2px;
+    height: 38px;
     color:  $white;
-    width: 180px;
+    width: 170px;
     cursor: pointer;
     border: none;
-    background: $dark-blue;
+    font-size: 14px;
+    font-family: Poppins;
+    background: none;
 
     &:hover {
-      background: $dark-blue-hover;
+      background: #4d5fc4 !important;
+      color:  $white;
     }
-
   }
 }
 
